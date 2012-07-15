@@ -1,8 +1,21 @@
 apply plugin: 'java'
 
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testCompile "junit:junit:4.10"
+}
+
 compileJava {
   options.fork = true
   options.forkOptions.executable = "${project.jdk8home}/bin/javac"
+}
+
+compileTestJava {
+	options.fork = true
+	options.forkOptions.executable = "${project.jdk8home}/bin/javac"
 }
 
 task wrapper(type:Wrapper) {
