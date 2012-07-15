@@ -1,0 +1,11 @@
+apply plugin: 'java'
+
+compileJava {
+  options.fork = true
+  options.forkOptions.executable = "${project.jdk8home}/bin/javac"
+}
+
+task wrapper(type:Wrapper) {
+	gradleVersion = '1.0'
+}
+
