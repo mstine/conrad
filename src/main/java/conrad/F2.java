@@ -1,8 +1,22 @@
 package conrad;
 
-interface Function<T1,T2,T3> {
+interface F2<A,B,C> {
 
-				T3 apply(T1 x, T2 y);
+				C f(A x, B y);
+
+				void hello() default {
+								System.out.println("I still work");
+				}
+
+				F<B, C> f(final A a) default {
+								return new F<B, C>() {
+												public C f(final B b) {
+																return F2.this.f(a, b);
+												}
+								};
+				}
+
+				
 
 }
 

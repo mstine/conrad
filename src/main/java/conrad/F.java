@@ -1,8 +1,20 @@
 package conrad;
 
-interface UnaryFunction<T1,T2> {
+interface F<A,B> {
 
-				T2 apply(T1 x);
+				B f(A a);
+
+				<C> F<C, B> o (final F<C, A> g) default {
+								return new F<C, B>() {
+												public B f(final C c) {
+																return F.this.f(g.f(c));
+												}
+								};
+				}
+
+				<C> F<A,C> andThen(final F<B,C> g) default {
+								return g.o(this);
+				}
 
 }
 
