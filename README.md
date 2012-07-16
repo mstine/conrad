@@ -16,15 +16,15 @@ So, this project is an attempt to build a library that will combine the best of 
 
 You'll first need to download and install the JDK 1.8 Developer Preview with Lambda Support from [http://jdk8.java.net/lambda/](http://jdk8.java.net/lambda/).
 
-Conrad is built using [Gradle](http://gradle.org). The Gradle Wrapper is provided to support building the project without explicitly downloading and installing Gradle.
+Conrad is built using [Ant](http://ant.apache.org). Distributions 1.8.3 and later have support for JDK 1.8.
 
-One environment variable is needed, which points to the JAVA\_HOME for your JDK 1.8 Developer Preview:
+Make sure that your JAVA\_HOME environment variable is pointing to your JDK 1.8 Developer Preview.
 
-    export ORG_GRADLE_PROJECT_jdk8home=<PATH_TO_JDK_1.8>
+Then, from the conrad directory, execute the build:
 
-You may then run the build:
+    ant
 
-    ./gradlew build 
+We will potentially move to a [Gradle](http://gradle.org) build when JDK 1.8 support is added.
 
 ## What's with the name?
 
