@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<project name="conrad" default="archive">
+
+				<property name="build.classes.dir" location="build/classes"/>
+				<property name="test.classes.dir" location="build/testClasses"/>
+
+				<path id="compile.classpath">
+								<fileset dir="lib">
+												<include name="*.jar"/>
+								</fileset>
+				</path>
+
+				<path id="test.compile.classpath">
+								<path refid="compile.classpath"/>
+								<pathelement location="${build.classes.dir}"/>
+				</path>
+
+				<path id="test.classpath">
+								<path refid="test.compile.classpath"/>
+								<pathelement location="${test.classes.dir}"/>
+				</path>
+
+				<target name="init">
+								<mkdir dir="${build.classes.dir}"/>
+								<mkdir dir="${test.classes.dir}"/>
+				</target>
+
+				<target name="compile" depends="init">
+								<javac srcdir="src/main/java" 
+												includeAntRuntime="false" 
+												target="1.8" 
+												compiler="javac1.7" 
+												destdir="${build.classes.dir}"/>
+				</target>
+
+				<target name="testCompile" depends="compile">
+								<javac srcdir="src/test/java" 
+												includeAntRuntime="false" 
+												target="1.8" 
+												compiler="javac1.7" 
+												destdir="${test.classes.dir}">
+												<classpath refid="test.compile.classpath"/>
+								</javac>
+				</target>
+
+				<target name="test" depends="testCompile">
+								<junit printsummary="false" haltonfailure="true">
+												<classpath refid="test.classpath"/>
+												<formatter type="brief" usefile="false"/>
+												<batchtest>
+																<fileset dir="${test.classes.dir}">
+																				<include name="**/*Test.class"/>
+																</fileset>
+												</batchtest>
+								</junit>
+				</target>
+
+				<target name="archive" depends="test">
+								<jar destfile="build/conrad.jar"
+												basedir="${build.classes.dir}"/>
+		 </target>
+
+		 <target name="clean" depends="init">
+						 <delete dir="build"/>
+		 </target>
+
+</project>
+
